@@ -32,6 +32,32 @@ A production-grade, full-stack personal finance tool built for the Fenmo SDE Tec
 3. Start dev server: `npm run dev`
 4. Open [http://localhost:5173](http://localhost:5173)
 
+## 🌐 Deployment & Live Links
+
+- **Frontend (Vercel)**: [Live Demo Link](https://vercel.com) _(Add your deployed URL here)_
+- **Backend (Render)**: [API Health Check](https://render.com/health) _(Add your deployed URL here)_
+- **GitHub Repository**: [Public Repo Link](https://github.com/Subham010Rock/expense_tracker)
+
+### Deployment Instructions
+
+#### 1. Backend & Database (Render)
+
+1. **PostgreSQL**: Create a new **PostgreSQL** instance on Render (Free plan).
+2. **Web Service**: Create a new **Web Service** connected to the `backend` directory.
+3. **Environment Variables**:
+   - `DATABASE_URL`: Your Render PostgreSQL Internal/External URL.
+   - `PORT`: `3001`
+4. **Build Command**: `npm install`
+5. **Start Command**: `npm start`
+
+#### 2. Frontend (Vercel)
+
+1. Import the repository into Vercel.
+2. Select the `frontend` directory as the root.
+3. **Environment Variables**:
+   - `VITE_API_URL`: The URL of your deployed Render backend (e.g., `https://your-backend.onrender.com`).
+4. Vercel will automatically detect the Vite build settings and deploy.
+
 ---
 
 ## 🏗️ Architecture & Key Design Decisions
@@ -83,7 +109,7 @@ A production-grade, full-stack personal finance tool built for the Fenmo SDE Tec
 ## 📝 Design Trade-offs & Notes
 
 - **Authentication**: Intentionally omitted to focus on the core "Expense Tracking" logic and idempotency within the 4-hour window.
-- **Deployment**: Configured for Railway (Backend) and Vercel (Frontend). `DATABASE_URL` environment variable support is included in the backend for easy cloud connection.
+- **Monorepo Structure**: Organized as a monorepo for easier management, with deployment configurations (`Procfile`, `vercel.json`) included for zero-config setup.
 - **CI/CD**: Added a standard `.gitignore` and `package.json` scripts that follow industry norms for automated testing.
 
 ---
