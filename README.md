@@ -57,6 +57,18 @@ A production-grade, full-stack personal finance tool built for the Fenmo SDE Tec
 - Backend validates all inputs (positive amount, required fields, ISO date format).
 - Frontend provides immediate feedback and disables the submit button during in-flight requests.
 
+### 5. Robustness under Real-World Conditions
+
+- **Network Retries**: By associating each submission with a client-generated UUID (`Idempotency-Key`), the API can safely handle retries without creating duplicate expenses.
+- **Concurrent Submissions**: The UI disables the submit button immediately upon click to prevent accidental double-posts, while the database-level `UNIQUE` constraint provides a final line of defense.
+- **Browser Refreshes**: The idempotency key is stored in `sessionStorage` per-form-session. Refreshing the page after a successful submission generates a fresh key, while refreshing during a hang allows the client to retry with the same key safely.
+
+### 6. Data Correctness & Money Handling
+
+- **NUMERIC vs FLOAT**: In financial systems, `FLOAT` is dangerous due to rounding errors (e.g., `0.1 + 0.2 != 0.3`). This system uses PostgreSQL `NUMERIC(12, 2)` and JS string-based normalization to ensure cent-perfect accuracy.
+- **Date Consistency**: PostgreSQL `DATE` types are returned as raw strings (YYYY-MM-DD) via `pg.types.setTypeParser` to avoid the common JS pitfall where local timezones shift dates by a day when parsing objects.
+- **Atomic Migrations**: The backend runs its schema check on startup, ensuring the database is always in the correct state before traffic hits.
+
 ---
 
 ## 🛠️ Tech Stack
