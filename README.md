@@ -34,8 +34,8 @@ A production-grade, full-stack personal finance tool built for the Fenmo SDE Tec
 
 ## 🌐 Deployment & Live Links
 
-- **Frontend (Vercel)**: [Live Demo Link](https://vercel.com) _(Add your deployed URL here)_
-- **Backend (Render)**: [API Health Check](https://render.com/health) _(Add your deployed URL here)_
+- **Frontend (Vercel)**: [Live Demo Link](https://expense-tracker-kappa-azure.vercel.app/)
+- **Backend (Render)**: [API Health Check](https://expense-tracker-1yzk.onrender.com/health)
 - **GitHub Repository**: [Public Repo Link](https://github.com/Subham010Rock/expense_tracker)
 
 ### Deployment Instructions
